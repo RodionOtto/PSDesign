@@ -1,0 +1,75 @@
+.fullscreen {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.fullscreen__body {
+    background-image: url('../../../images/start-background.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.fullscreen__logo {
+    background-image: url('../../../images/start-logo-web.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 70vw;
+    height: 30vh;
+    margin-top: 30vh;
+    margin-bottom: 20vh;
+}
+
+.fullscreen__scroll {
+    width: 20px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 20px;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.fullscreen__scroll-animation {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 50%;
+    margin: auto;
+    animation: scroll-down 2s linear infinite;
+}
+
+@keyframes scroll-down {
+    0% {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(-1rem);
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 700px) {
+    .fullscreen__logo {
+        background-image: url('../../../images/start-logo-phone.svg');
+    }
+
+    .fullscreen__scroll {
+        width: 15px;
+        height: 40px;
+    }
+
+    .fullscreen__scroll-animation {
+        width: 10px;
+        height: 10px;
+    }
+}

@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: #232323;
+  min-width: 320px;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: "Arkhip";
+  font-style: normal;
+  font-weight: 400;
+  src: url(./fonts/Arkhip.woff) format("woff"),
+  url(./fonts/Arkhip.woff2) format('woff2');
+}
