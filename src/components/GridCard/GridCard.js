@@ -1,11 +1,11 @@
 import React from 'react';
 import './GridCard.css';
 
-const GridCard = props => {
+const GridCard = ({caseItem}) => {
     return(
         <div className="cases__grid-item">
-            <h3 className="cases__name">{props.case.title}</h3>
-            <p className="cases__description">{props.case.text}</p>
+            <h3 className="cases__name">{ caseItem.title }</h3>
+            <p className="cases__description">{ caseItem.text }</p>
         </div>
     )
 }
