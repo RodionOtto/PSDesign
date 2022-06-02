@@ -1,3 +1,4 @@
+import React from 'react';
 import Fullscreen from './components/Sections/Fullscreen/Fullscreen';
 import Header from './components/Header/Header';
 import Cases from './components/Sections/Cases/Cases';
@@ -6,6 +7,7 @@ import Contacts from './components/Sections/Contacts/Contacts';
 import Footer from './components/Footer/Footer';
 
 function App() {
+
   return (
     <div className="App">
       <Fullscreen />

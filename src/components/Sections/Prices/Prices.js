@@ -1,7 +1,12 @@
 import React from 'react';
 import './Prices.css';
+import ModalWindow from '../../Modal/Modal';
+import { useState } from 'react';
 
 const Prices = () => {
+
+    const [modalActive, setModalActive] = useState(false);
+    
     return(
         <>
         <section className="prices" id="prices">
@@ -25,7 +30,7 @@ const Prices = () => {
                         <div className="prices__option">обмерный план</div>
                         <div className="prices__option">документация</div>
                     </div>
-                    <a href="tel:89160151552" className="prices__submit">оформить</a>
+                    <button className="prices__submit" onClick={() => setModalActive(true)}>оформить</button>
                 </div>
 
                 <div className="prices__item">
@@ -44,7 +49,7 @@ const Prices = () => {
                         <div className="prices__option">смета</div>
                         <div className="prices__option">поиск мебели и материалов</div>
                     </div>
-                    <a href="tel:89160151552" className="prices__submit">оформить</a>
+                    <button className="prices__submit" onClick={() => setModalActive(true)}>оформить</button>
                 </div>
 
                 <div className="prices__item">
@@ -61,7 +66,7 @@ const Prices = () => {
                         <div className="prices__option">авторский надзор на все время</div>
                         <div className="prices__option">управление стройкой</div>
                     </div>
-                    <a href="tel:89160151552" className="prices__submit">оформить</a>
+                    <button className="prices__submit" onClick={() => setModalActive(true)}>оформить</button>
                 </div>
             </div>
             <div className="prices__offer">
@@ -73,6 +78,9 @@ const Prices = () => {
                 </p>
             </div>
         </section>
+
+        <ModalWindow active={modalActive} setActive={setModalActive}>
+        </ModalWindow>
         </>
     )
 }
