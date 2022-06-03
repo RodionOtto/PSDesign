@@ -1,6 +1,7 @@
 import React from 'react';
 import './Prices.css';
 import ModalWindow from '../../Modal/Modal';
+import FeedbackForm from '../../FeedbackForm/Feedback';
 import { useState } from 'react';
 
 const Prices = () => {
@@ -80,6 +81,7 @@ const Prices = () => {
         </section>
 
         <ModalWindow active={modalActive} setActive={setModalActive}>
+            <FeedbackForm />
         </ModalWindow>
         </>
     )
