@@ -62,8 +62,10 @@ const Cases = () => {
         ];
 
         setCards([...cards, ...moreState]);
-        
     };
+
+    const isDisabled = cards.length > 6;
+    const className = isDisabled ? "disabled-button" : 'cases__load-more-btn';
 
     return(
         <> 
@@ -74,7 +76,8 @@ const Cases = () => {
             </div>
             <GridCards cards={cards} />
             <button 
-                className="cases__load-more-btn" 
+                disabled={isDisabled}
+                className={className} 
                 onClick={() => handleLoadMore(cards)}
             >ПОКАЗАТЬ ЕЩЁ</button>
         </section>
