@@ -2,11 +2,11 @@
 
 ### Стек:
 
-[React,
-Formik (for feedback form),
-Yup Validation (with RegExp),
-Swiper (for slider),
-axios (for send form data to Telegram),
+[React\
+Formik (for feedback form)\
+Yup Validation (with RegExp)\
+Swiper (for slider)\
+axios (for send form data to Telegram)\
 CSS]
 
 ## Как скачать приложение и запустить локально: 
