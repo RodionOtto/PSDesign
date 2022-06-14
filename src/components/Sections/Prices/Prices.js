@@ -63,7 +63,7 @@ const Prices = () => {
                         <div className="prices__option">документация</div>
                     </div>
                     <button 
-                        className={ priceActive1 ? "prices__submit1" : 'isHiddenSubmit1'}
+                        className={ priceActive1 ? "prices__submit1" : 'isHiddenSubmit1 submit__cursor'}
                         onClick={() => setModalActive(true)}
                         >оформить
                     </button>
@@ -90,7 +90,7 @@ const Prices = () => {
                         <div className="prices__option">поиск мебели и материалов</div>
                     </div>
                     <button 
-                        className={ priceActive2 ? "prices__submit2" : 'isHiddenSubmit2'}
+                        className={ priceActive2 ? "prices__submit2" : 'isHiddenSubmit2 submit__cursor'}
                         onClick={() => setModalActive(true)}
                         >оформить
                     </button>
@@ -115,7 +115,7 @@ const Prices = () => {
                         <div className="prices__option">управление стройкой</div>
                     </div>
                     <button 
-                        className={ priceActive3 ? "prices__submit3" : 'isHiddenSubmit3'}
+                        className={ priceActive3 ? "prices__submit3" : 'isHiddenSubmit3 submit__cursor'}
                         onClick={() => setModalActive(true)}
                         >оформить
                     </button>

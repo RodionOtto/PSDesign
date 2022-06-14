@@ -5,6 +5,10 @@
     flex-direction: column;
 }
 
+.submit__cursor {
+    cursor: pointer;
+}
+
 .prices__name {
     display: flex;
 }

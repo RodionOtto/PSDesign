@@ -54,10 +54,10 @@ const FeedbackForm = () => {
                     .email("Неверный адрес электронной почты")
                     .required("Введите адрес электронной почты"),
                 phone: Yup.string()
-                    .min(11, "Укажите корректный номер телефона")
-                    .max(12, "Укажите корректный номер телефона")
-                    .matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
-                        "Укажите корректный номер телефона")
+                    .min(12, "Укажите корректный номер без пробелов")
+                    .max(12, "Укажите корректный номер без пробелов")
+                    .matches(/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
+                        "Укажите корректный номер")
                     .required("Введите номер телефона"),
                 acceptedTerms: Yup.boolean()
                     .required('Необходимо принять условия')
@@ -66,18 +66,19 @@ const FeedbackForm = () => {
         }
         onSubmit={(values, { setSubmitting }) => {
             const TOKEN = '5405372932:AAFZzRX4vOB3owJaY9DPaD6-t-Psh3Mp-Y0';
-            const CHAT_ID = '-669642863';
-            const URI_API = `https://api.telegram.org/bot${ TOKEN }/sendMessage`;
+            const CHAT_ID = '-1001711709491';
+            const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
-            let message = `Заявка с сайта`;
-            message +=`Имя: ${this.values.name}`;
-            message +=`Почта: ${this.values.email}`;
-            message +=`Телефон: ${this.values.phone}`;
+            let message = `Заявка с сайта Имя: ${values.name} Почта: ${values.email} Телефон: ${values.phone}`;
 
-            axios.post(URI_API, {
+            axios.post(URI_API, values, {
                 chat_id: CHAT_ID,
-                text: message
-            });
+                text: message,
+            }).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            })
         }}
     >
         {({
@@ -130,8 +131,8 @@ const FeedbackForm = () => {
                 id='phone'
                 type="tel"
                 name="phone"
-                pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
-                placeholder="+7(___)___-__-__"
+                // pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
+                placeholder="+7xxxxxxxxxx"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.phone}
@@ -151,6 +152,7 @@ const FeedbackForm = () => {
                 className="form__submit"
                 type="submit"
                 disabled={isSubmitting}
+                onClick={handleSubmit}
             >
                 отправить
             </button>
