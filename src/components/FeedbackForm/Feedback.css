@@ -6,7 +6,6 @@
     padding: 0;
     height: 100%;
     width: 100%;
-    position: relative;
 }
 
 .error {
@@ -18,7 +17,7 @@
     margin-bottom: 30px;
 }
 
-.error.check {
+/* .error.check {
     margin-bottom: 10px;
 }
 
@@ -30,7 +29,7 @@
     line-height: 34px;
     outline: #0081CA;
     margin: 0;
-}
+} */
 
 .FeedbackForm__wrap {
     display: flex;
@@ -106,6 +105,7 @@
     line-height: 36px;
     letter-spacing: 0.1em;
     height: 40px;
+    opacity: .8;
 }
 
 .form__input {

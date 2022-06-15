@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Pagination, Navigation, Keyboard } from "swiper";
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
+import { Swiper } from 'swiper/react/swiper-react';
 import "swiper/swiper.min.css";
 import "swiper/modules/pagination/pagination.min.css";
 import "swiper/modules/navigation/navigation.min.css";
 import './Slider.css';
+import Slide from '../Slide/Slide';
 
 const Slider = () => {
+
+    const initialCase1 = [
+        {caseImg: require('../../images/cases/case1/case1-0.jpg'),
+        id: 1},
+        {caseImg: require('../../images/cases/case1/case1-1.jpg'),
+        id: 2},
+        {caseImg: require('../../images/cases/case1/case1-2.jpg'),
+        id: 3},
+        {caseImg: require('../../images/cases/case1/case1-3.jpg'),
+        id: 4},
+        {caseImg: require('../../images/cases/case1/case1-4.jpg'),
+        id: 5},
+    ];
+
+    const [case1] = useState(initialCase1);
 
     return (
             <Swiper
@@ -27,9 +43,7 @@ const Slider = () => {
             modules={[Pagination, Navigation, Keyboard]}
             className='slider'
             >
-                <SwiperSlide className='slide'><img className='slide-img' alt={'фото сделанного проекта'} src={require('../../images/cases-cover/case1.jpg')} /></SwiperSlide>
-                <SwiperSlide className='slide'><img className='slide-img' alt={'фото сделанного проекта'} src={require('../../images/cases-cover/case2.jpg')} /></SwiperSlide>
-                <SwiperSlide className='slide'><img className='slide-img' alt={'фото сделанного проекта'} src={require('../../images/cases-cover/case3.jpg')} /></SwiperSlide>
+                <Slide case1={case1} />
             </Swiper>
     )
 };

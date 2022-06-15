@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { Formik, useField } from "formik";
 import * as Yup from "yup";
 import "./Feedback.css";
 import axios from 'axios';
+import PostDataOk from "../PostDataOk/PostDataOk";
+import ModalWindow from '../Modal/Modal';
 
 const FeedbackForm = () => {
+
+    const [modalActive, setModalActive] = useState(false);
 
     const MyTextInput = ({ label, ...props }) => {
         const [field, meta] = useField(props);
@@ -19,20 +23,20 @@ const FeedbackForm = () => {
         );
     };
 
-    const MyCheckbox = ({ children, ...props }) => {
-        const [field, meta] = useField({ ...props, type: "checkbox" });
-        return (
-            <>
-                <label className="checkbox">
-                    {meta.touched && meta.error ? (
-                        <div className="error check">{meta.error}</div>
-                    ) : null}
-                    <input {...field} {...props} type="checkbox" />
-                    {children}
-                </label>
-            </>
-        );
-    };
+    // const MyCheckbox = ({ children, ...props }) => {
+    //     const [field, meta] = useField({ ...props, type: "checkbox" });
+    //     return (
+    //         <>
+    //             <label className="checkbox">
+    //                 {meta.touched && meta.error ? (
+    //                     <div className="error check">{meta.error}</div>
+    //                 ) : null}
+    //                 <input {...field} {...props} type="checkbox" />
+    //                 {children}
+    //             </label>
+    //         </>
+    //     );
+    // };
 
     return (
         <div className="FeedbackForm">
@@ -59,25 +63,28 @@ const FeedbackForm = () => {
                     .matches(/^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
                         "Укажите корректный номер")
                     .required("Введите номер телефона"),
-                acceptedTerms: Yup.boolean()
-                    .required('Необходимо принять условия')
-                    .oneOf([true], 'Необходимо принять условия'),
+                // acceptedTerms: Yup.boolean()
+                //     .required('Необходимо принять условия')
+                //     .oneOf([true], 'Необходимо принять условия'),
             })
         }
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, Actions) => {
             const TOKEN = '5405372932:AAFZzRX4vOB3owJaY9DPaD6-t-Psh3Mp-Y0';
             const CHAT_ID = '-1001711709491';
-            const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+            let message = `Заявка с сайта 
+                            Имя: ${values.name} 
+                            Почта: ${values.email} 
+                            Телефон: ${values.phone}`;
 
-            let message = `Заявка с сайта Имя: ${values.name} Почта: ${values.email} Телефон: ${values.phone}`;
+            const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}`;
 
-            axios.post(URI_API, values, {
-                chat_id: CHAT_ID,
-                text: message,
-            }).then(function (response) {
-                console.log(response);
-            }).catch(function (error) {
-                console.log(error);
+            axios.post(URL_API, values).then(response => {
+                Actions.setSubmitting(false);
+                alert(response);
+                Actions.resetForm();
+            }).catch(error => {
+                Actions.setSubmitting(false);
+                alert(error);
             })
         }}
     >
@@ -90,7 +97,10 @@ const FeedbackForm = () => {
             handleSubmit,
             isSubmitting,
         }) => (
-            <form onSubmit={handleSubmit} className="form">
+            <form 
+                onSubmit={handleSubmit} 
+
+                className="form">
             
             <label htmlFor="name" className="form__label">
                 Имя
@@ -140,13 +150,13 @@ const FeedbackForm = () => {
             />
             {errors.phone && touched.phone}
 
-            <MyCheckbox 
+            {/* <MyCheckbox 
                 name='acceptedTerms' 
                 id='acceptedTerms'
                 className='checkbox'
             >
                 Я соглашаюсь с условиями как Самоха
-            </MyCheckbox>
+            </MyCheckbox> */}
             
             <button
                 className="form__submit"
@@ -159,6 +169,10 @@ const FeedbackForm = () => {
             </form>
         )}
     </Formik>
+
+        <ModalWindow active={modalActive} setActive={setModalActive}>
+            <PostDataOk />
+        </ModalWindow>
     </div>
 );
 };

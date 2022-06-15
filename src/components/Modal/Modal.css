@@ -20,8 +20,8 @@
 }
 
 .modalWindow__content {
-    min-width: 46vw;
-    min-height: 80vh;
+    width: 70vw;
+    height: 80vh;
     border-radius: 30px;
     background-color: #232323;
     border: 1px solid #0081CA;
@@ -36,14 +36,14 @@
 @media screen and (min-width: 1200px) and (max-width: 1650px) {
     .modalWindow__content {
         height: 86%;
-        width: 40%;
+        width: 70%;
     }
 }
 
 @media screen and (min-width: 930px) and (max-width: 1199px) {
     .modalWindow__content {
         height: 88%;
-        width: 40%;
+        width: 70%;
     }
 }
 

@@ -1061,7 +1061,7 @@
         flex-direction: column;
         width: 300px;
         height: auto;
-        margin: auto 40px;
+        margin: auto;
         margin-bottom: 30px;
     }
 
@@ -1095,6 +1095,7 @@
     .prices__list {
         flex-direction: column;
         margin-bottom: 30px;
+        width: 320px;
     }
 
     .prices__item1 {
