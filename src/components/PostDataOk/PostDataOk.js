@@ -3,8 +3,8 @@ import './PostDataOk.css';
 
 const PostDataOk = () => {
     return (
-        <div>
-            <span></span>
+        <div className='thanks'>
+            <span className='thanks__text'>Скоро свяжемся!</span>
         </div>
     );
 };

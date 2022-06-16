@@ -4,11 +4,9 @@ import * as Yup from "yup";
 import "./Feedback.css";
 import axios from 'axios';
 import PostDataOk from "../PostDataOk/PostDataOk";
-import ModalWindow from '../Modal/Modal';
+// import ModalWindow from '../Modal/Modal';
 
 const FeedbackForm = () => {
-
-    const [modalActive, setModalActive] = useState(false);
 
     const MyTextInput = ({ label, ...props }) => {
         const [field, meta] = useField(props);
@@ -71,17 +69,13 @@ const FeedbackForm = () => {
         onSubmit={(values, Actions) => {
             const TOKEN = '5405372932:AAFZzRX4vOB3owJaY9DPaD6-t-Psh3Mp-Y0';
             const CHAT_ID = '-1001711709491';
-            let message = `Заявка с сайта 
-                            Имя: ${values.name} 
-                            Почта: ${values.email} 
-                            Телефон: ${values.phone}`;
+            let message = `Заявка с сайта Имя: ${values.name} Почта: ${values.email} Телефон: ${values.phone}`;
 
             const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}`;
 
             axios.post(URL_API, values).then(response => {
-                Actions.setSubmitting(false);
-                alert(response);
-                Actions.resetForm();
+                console.log(response);
+
             }).catch(error => {
                 Actions.setSubmitting(false);
                 alert(error);
@@ -169,10 +163,6 @@ const FeedbackForm = () => {
             </form>
         )}
     </Formik>
-
-        <ModalWindow active={modalActive} setActive={setModalActive}>
-            <PostDataOk />
-        </ModalWindow>
     </div>
 );
 };
