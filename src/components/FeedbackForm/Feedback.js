@@ -4,9 +4,19 @@ import * as Yup from "yup";
 import "./Feedback.css";
 import axios from 'axios';
 import PostDataOk from "../PostDataOk/PostDataOk";
+import PostDataFailed from '../PostDataFailed/PostDataFailed';
 // import ModalWindow from '../Modal/Modal';
 
 const FeedbackForm = () => {
+
+    const [successed, setSuccessed] = useState(false);
+    const [failed, setFailed] = useState(false);
+
+    if (successed) {
+        return <PostDataOk />;
+    } else if (failed) {
+        return <PostDataFailed />
+    };
 
     const MyTextInput = ({ label, ...props }) => {
         const [field, meta] = useField(props);
@@ -66,19 +76,20 @@ const FeedbackForm = () => {
                 //     .oneOf([true], 'Необходимо принять условия'),
             })
         }
-        onSubmit={(values, Actions) => {
+        onSubmit={(values, {setSubmitting,resetForm}) => {
             const TOKEN = '5405372932:AAFZzRX4vOB3owJaY9DPaD6-t-Psh3Mp-Y0';
             const CHAT_ID = '-1001711709491';
             let message = `Заявка с сайта Имя: ${values.name} Почта: ${values.email} Телефон: ${values.phone}`;
 
             const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}`;
 
-            axios.post(URL_API, values).then(response => {
-                console.log(response);
-
-            }).catch(error => {
-                Actions.setSubmitting(false);
-                alert(error);
+            axios.post(URL_API, values).then(() => {
+                resetForm({});
+                setSubmitting(false);
+                setSuccessed(true);
+            }).catch(() => {
+                setSubmitting(false);
+                setFailed(true);
             })
         }}
     >
@@ -105,7 +116,7 @@ const FeedbackForm = () => {
                 name="name"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.name}
+                value={values.name || ''}
                 placeholder="Введите имя"
                 className="form__input"
                 lang="ru"
@@ -122,7 +133,7 @@ const FeedbackForm = () => {
                 placeholder="example@example.com"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.email}
+                value={values.email || ''}
                 className="form__input"
                 lang="en"
             />
@@ -139,7 +150,7 @@ const FeedbackForm = () => {
                 placeholder="+7xxxxxxxxxx"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.phone}
+                value={ values.phone || ''}
                 className="form__input"
             />
             {errors.phone && touched.phone}
