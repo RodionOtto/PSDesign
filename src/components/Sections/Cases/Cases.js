@@ -106,7 +106,7 @@ const Cases = () => {
                 >
                     <h3 className="cases__name">Оставили место для вашего проекта</h3>
                     <p className="cases__description"></p> 
-                </div> 
+                </div>  
             </div>
             <button 
                 disabled={isDisabled}

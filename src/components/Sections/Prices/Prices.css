@@ -339,9 +339,9 @@
 
 .prices__offer {
     width: 100%;
-    height: 184px;
+    height: 10vh;
     display: flex;
-    background-image: url('../../../images/start-background.jpeg');
+    margin-bottom: 10vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -361,7 +361,7 @@
 }
 
 .prices__list {
-    margin: 60px auto 120px;
+    margin: 60px auto 0px;
     display: flex;
 }
 

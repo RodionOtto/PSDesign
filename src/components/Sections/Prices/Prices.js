@@ -121,14 +121,6 @@ const Prices = () => {
                     </button>
                 </div>
             </div>
-            <div className="prices__offer">
-                <p className="prices__offer-text">
-                    при заказе ремонта концепт проект и клининг в подарок
-                </p>
-                <p className="prices__offer-text">
-                    уложимся в ваш бюджет
-                </p>
-            </div>
         </section>
 
         <ModalWindow active={modalActive} setActive={setModalActive}>
